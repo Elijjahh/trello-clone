@@ -20,7 +20,7 @@ function togglePopup() {
 
 const kanban = useKanbanStore();
 
-function addTask() {
+function editTask() {
   kanban.updateTask(props.taskData.id, taskData.value);
   togglePopup();
 }
@@ -30,7 +30,7 @@ function addTask() {
   <div class="kanban-board-edit">
     <button @click="togglePopup" class="kanban-board-edit__btn">edit</button>
     <AppPopup v-model:visible="isPopupShown" title="Редактировать задачу">
-      <form @submit.prevent="addTask" class="kanban-board-edit__form">
+      <form @submit.prevent="editTask" class="kanban-board-edit__form">
         <AppInput v-model="taskData.name" label="Название задачи" name="task-name" />
         <AppInput
           v-model="taskData.datetime"

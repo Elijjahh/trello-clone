@@ -37,9 +37,12 @@ const useKanbanStore = defineStore('kanban', () => {
     return board.value;
   });
 
-  function addTask(taskData: { name: string; datetime: string; urgent: boolean }) {
+  function addTask(
+    taskData: { name: string; datetime: string; urgent: boolean },
+    category: string,
+  ) {
     const taskId = Math.floor(Math.random() * 10000);
-    board.value.backlog.items.push({ ...taskData, id: taskId });
+    board.value[category].items.push({ ...taskData, id: taskId });
   }
 
   function removeTask(taskId: number) {

@@ -24,9 +24,10 @@ function togglePopup() {
 }
 
 const kanban = useKanbanStore();
+const props = defineProps<{ taskCategory: string }>();
 
 function addTask() {
-  kanban.addTask(taskData.value);
+  kanban.addTask(taskData.value, props.taskCategory);
   togglePopup();
   resetTaskData();
 }

@@ -5,14 +5,14 @@ import KanbanBoardCard from '@/components/kanban/KanbanBoardCard.vue';
 import KanbanBoardAdd from '@/components/kanban/KanbanBoardAdd.vue';
 
 import type { TTaskData } from './types';
-const props = defineProps<{ items: TTaskData[]; title: string }>();
+const props = defineProps<{ items: TTaskData[]; title: string; category: string }>();
 </script>
 
 <template>
   <div class="kanban-board-column">
     <div class="kanban-board-column__header">
       <h3 class="kanban-board-column__title">{{ props.title }}</h3>
-      <KanbanBoardAdd />
+      <KanbanBoardAdd :taskCategory="props.category" />
     </div>
 
     <draggable class="kanban-board-column__items" :list="props.items" group="kanban" itemKey="name">

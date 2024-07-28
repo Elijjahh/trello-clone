@@ -10,6 +10,7 @@ const kanban = useKanbanStore();
     <KanbanBoardColumn
       v-for="(columnConfig, columnName) in kanban.getBoard"
       :key="columnName"
+      :category="columnName"
       :title="columnConfig.title"
       :items="columnConfig.items"
     />
