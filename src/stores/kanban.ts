@@ -10,14 +10,14 @@ const useKanbanStore = defineStore('kanban', () => {
       items: [
         {
           id: 1,
-          name: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, consequatur.',
-          datetime: '23-07-2024',
+          name: 'Закончить делать клон Trello',
+          datetime: '2024-07-29T08:00',
           urgent: true,
         },
         {
           id: 2,
-          name: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, consequatur.',
-          datetime: '23-07-2024',
+          name: 'Тестовая запись)))',
+          datetime: '2024-07-29T23:02',
           urgent: false,
         },
       ],
@@ -42,7 +42,7 @@ const useKanbanStore = defineStore('kanban', () => {
   }
 
   function removeTask(taskId: number) {
-    for (const category of board.value) {
+    for (const category in board.value) {
       board.value[category].items = board.value[category].items.filter(
         (item: TTaskData) => item.id !== taskId,
       );

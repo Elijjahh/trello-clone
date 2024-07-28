@@ -1,13 +1,60 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import type { TTaskData } from './types';
+import useKanbanStore from '@/stores/kanban';
+import KanbanBoardEdit from './KanbanBoardEdit.vue';
+
 const props = defineProps<{ data: TTaskData }>();
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+
+  const months = [
+    'января',
+    'февраля',
+    'марта',
+    'апреля',
+    'мая',
+    'июня',
+    'июля',
+    'августа',
+    'сентября',
+    'октября',
+    'ноября',
+    'декабря',
+  ];
+
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${day} ${month} ${year}`;
+}
+
+const getDatetime = computed(() => {
+  const datetime = props.data.datetime.split('T');
+  return formatDate(datetime[0]) + ', ' + datetime[1];
+});
+
+const kanban = useKanbanStore();
+
+function remove() {
+  kanban.removeTask(props.data.id);
+}
 </script>
 
 <template>
   <div class="kanban-board-сard">
     <div v-if="props.data.urgent" class="kanban-board-сard__mark">Срочно</div>
     <div class="kanban-board-сard__title">{{ props.data.name }}</div>
-    <div class="kanban-board-сard__datetime">{{ props.data.datetime }}</div>
+    <div class="kanban-board-сard__footer">
+      <div class="kanban-board-сard__datetime">{{ getDatetime }}</div>
+      <div class="kanban-board-сard__options">
+        <KanbanBoardEdit :taskData="props.data" />
+        <button @click="remove" class="kanban-board-сard__remove">remove</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,7 +82,22 @@ const props = defineProps<{ data: TTaskData }>();
     font-size: 18px;
   }
 
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__datetime {
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__remove {
   }
 }
 </style>

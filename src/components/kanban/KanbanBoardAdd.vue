@@ -3,19 +3,16 @@ import { ref } from 'vue';
 
 import useKanbanStore from '@/stores/kanban';
 
-const date = new Date();
-const formattedDate = date.toISOString().slice(0, 16);
-
 const taskData = ref({
   name: '',
-  datetime: formattedDate,
+  datetime: '',
   urgent: false,
 });
 
 function resetTaskData() {
   taskData.value = {
     name: '',
-    datetime: formattedDate,
+    datetime: '',
     urgent: false,
   };
 }
