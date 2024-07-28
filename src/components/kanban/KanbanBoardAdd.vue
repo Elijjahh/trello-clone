@@ -30,18 +30,14 @@ function addTask() {
     <button @click="add" class="kanban-board-add__btn"></button>
     <AppPopup v-model:visible="isPopupShown" title="Создать задачу">
       <form @submit.prevent="addTask" class="kanban-board-add__form">
-        <div class="kanban-board-add__input">
-          <label for="task-name">Название задачи</label>
-          <input v-model="taskData.name" id="task-name" type="text" />
-        </div>
-        <div class="kanban-board-add__input">
-          <label for="task-date">Срок задачи</label>
-          <input v-model="taskData.datetime" id="task-date" type="datetime-local" />
-        </div>
-        <div class="kanban-board-add__checkbox">
-          <input v-model="taskData.urgent" id="task-urgent" type="checkbox" />
-          <label for="task-urgent">Срочная задача</label>
-        </div>
+        <AppInput v-model="taskData.name" label="Название задачи" name="task-name" />
+        <AppInput
+          v-model="taskData.datetime"
+          label="Срок задачи"
+          name="task-date"
+          type="datetime-local"
+        />
+        <AppCheckbox v-model="taskData.urgent" label="Срочная задача" name="task-urgent" />
         <button type="submit" class="kanban-board-add__submit">Создать</button>
       </form>
     </AppPopup>
