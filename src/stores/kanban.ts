@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
+import { useStorage } from '@vueuse/core';
 
 import type { TTaskData } from '@/components/kanban/types';
 
 const useKanbanStore = defineStore('kanban', () => {
-  const board = ref({
+  const board = useStorage('kanban-board', {
     backlog: {
       title: 'Backlog',
       items: [
@@ -30,7 +31,7 @@ const useKanbanStore = defineStore('kanban', () => {
       title: 'Done',
       items: [],
     },
-  }) as Record<string, any>;
+  } as Record<string, any>);
 
   const getBoard = computed(() => {
     return board.value;
