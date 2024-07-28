@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const isPopupShown = ref(false);
-
-function showPopup() {
-  isPopupShown.value = !isPopupShown.value;
-}
-
-function add() {
-  showPopup();
-}
+import useKanbanStore from '@/stores/kanban';
 
 const date = new Date();
 const formattedDate = date.toISOString().slice(0, 16);
@@ -20,14 +12,32 @@ const taskData = ref({
   urgent: false,
 });
 
+function resetTaskData() {
+  taskData.value = {
+    name: '',
+    datetime: formattedDate,
+    urgent: false,
+  };
+}
+
+const isPopupShown = ref(false);
+
+function togglePopup() {
+  isPopupShown.value = !isPopupShown.value;
+}
+
+const kanban = useKanbanStore();
+
 function addTask() {
-  console.log(taskData.value);
+  kanban.addTask(taskData.value);
+  togglePopup();
+  resetTaskData();
 }
 </script>
 
 <template>
   <div class="kanban-board-add">
-    <button @click="add" class="kanban-board-add__btn"></button>
+    <button @click="togglePopup" class="kanban-board-add__btn"></button>
     <AppPopup v-model:visible="isPopupShown" title="Создать задачу">
       <form @submit.prevent="addTask" class="kanban-board-add__form">
         <AppInput v-model="taskData.name" label="Название задачи" name="task-name" />
@@ -78,22 +88,6 @@ function addTask() {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-
-  &__input {
-    display: grid;
-
-    input {
-      border: 1px solid #000;
-      border-radius: 5px;
-      padding: 5px;
-    }
-  }
-
-  &__checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
 }
 </style>

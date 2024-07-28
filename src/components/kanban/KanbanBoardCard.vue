@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TCardData } from './types';
-const props = defineProps<{ data: TCardData }>();
+import type { TTaskData } from './types';
+const props = defineProps<{ data: TTaskData }>();
 </script>
 
 <template>

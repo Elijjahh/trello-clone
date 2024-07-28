@@ -4,8 +4,8 @@ import draggable from 'vuedraggable';
 import KanbanBoardCard from '@/components/kanban/KanbanBoardCard.vue';
 import KanbanBoardAdd from '@/components/kanban/KanbanBoardAdd.vue';
 
-import type { TCardData } from './types';
-const props = defineProps<{ items: TCardData[]; title: string }>();
+import type { TTaskData } from './types';
+const props = defineProps<{ items: TTaskData[]; title: string }>();
 </script>
 
 <template>

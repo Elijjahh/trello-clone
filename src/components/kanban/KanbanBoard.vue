@@ -1,38 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import KanbanBoardColumn from '@/components/kanban/KanbanBoardColumn.vue';
+import useKanbanStore from '@/stores/kanban';
 
-const kanban = ref({
-  backlog: {
-    title: 'Backlog',
-    items: [
-      {
-        name: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, consequatur.',
-        datetime: '23-07-2024',
-        urgent: true,
-      },
-      {
-        name: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, consequatur.',
-        datetime: '23-07-2024',
-        urgent: false,
-      },
-    ],
-  },
-  inProgress: {
-    title: 'In Progress',
-    items: [],
-  },
-  done: {
-    title: 'Done',
-    items: [],
-  },
-});
+const kanban = useKanbanStore();
 </script>
 
 <template>
   <section class="kanban-board">
     <KanbanBoardColumn
-      v-for="(columnConfig, columnName) in kanban"
+      v-for="(columnConfig, columnName) in kanban.getBoard"
       :key="columnName"
       :title="columnConfig.title"
       :items="columnConfig.items"
