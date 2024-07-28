@@ -1,11 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import KanbanBoard from '@/components/KanbanBoard.vue';
+</script>
 
 <template>
   <main>
-    <section>
-      <h1>hello</h1>
-    </section>
+    <KanbanBoard />
   </main>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
