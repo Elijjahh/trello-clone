@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import KanbanBoardColumn from '@/components/KanbanBoardColumn.vue';
+import KanbanBoardColumn from '@/components/kanban/KanbanBoardColumn.vue';
 
 const kanban = ref({
   backlog: {

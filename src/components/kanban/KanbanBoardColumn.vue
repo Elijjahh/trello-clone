@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable';
 
+import KanbanBoardCard from '@/components/kanban/KanbanBoardCard.vue';
+import KanbanBoardAdd from '@/components/kanban/KanbanBoardAdd.vue';
+
 import type { TCardData } from './types';
-import KanbanBoardCard from './KanbanBoardCard.vue';
-
 const props = defineProps<{ items: TCardData[]; title: string }>();
-
-function add() {}
 </script>
 
 <template>
   <div class="kanban-board-column">
     <div class="kanban-board-column__header">
       <h3 class="kanban-board-column__title">{{ props.title }}</h3>
-      <button @click="add" class="kanban-board-column__add"></button>
+      <KanbanBoardAdd />
     </div>
+
     <draggable class="kanban-board-column__items" :list="props.items" group="kanban" itemKey="name">
       <template #item="{ element }">
         <KanbanBoardCard :data="element" />

@@ -3,4 +3,10 @@ import './assets/scss/main.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
 
-createApp(App).mount('#app');
+import AppPopup from './components/app/AppPopup.vue';
+
+const app = createApp(App);
+
+app.component('AppPopup', AppPopup);
+
+app.mount('#app');
