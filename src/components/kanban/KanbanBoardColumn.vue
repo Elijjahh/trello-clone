@@ -41,34 +41,6 @@ const props = defineProps<{ items: TTaskData[]; title: string }>();
     font-size: 20px;
   }
 
-  &__add {
-    position: relative;
-    width: 20px;
-    height: 20px;
-
-    &:before {
-      content: '';
-      width: 100%;
-      height: 1px;
-      background: #000;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-    }
-
-    &:after {
-      content: '';
-      width: 1px;
-      height: 100%;
-      background: #000;
-      position: absolute;
-      top: 0;
-      right: 50%;
-      transform: translateX(50%);
-    }
-  }
-
   &__items {
     margin-top: 20px;
     display: flex;
