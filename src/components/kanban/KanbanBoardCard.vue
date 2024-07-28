@@ -2,8 +2,8 @@
 import { computed } from 'vue';
 
 import type { TTaskData } from './types';
-import useKanbanStore from '@/stores/kanban';
 import KanbanBoardEdit from './KanbanBoardEdit.vue';
+import KanbanBoardRemove from './KanbanBoardRemove.vue';
 
 const props = defineProps<{ data: TTaskData }>();
 
@@ -36,12 +36,6 @@ const getDatetime = computed(() => {
   const datetime = props.data.datetime.split('T');
   return formatDate(datetime[0]) + ', ' + datetime[1];
 });
-
-const kanban = useKanbanStore();
-
-function remove() {
-  kanban.removeTask(props.data.id);
-}
 </script>
 
 <template>
@@ -52,7 +46,7 @@ function remove() {
       <div class="kanban-board-сard__datetime">{{ getDatetime }}</div>
       <div class="kanban-board-сard__options">
         <KanbanBoardEdit :taskData="props.data" />
-        <button @click="remove" class="kanban-board-сard__remove">remove</button>
+        <KanbanBoardRemove :taskId="props.data.id" />
       </div>
     </div>
   </div>
