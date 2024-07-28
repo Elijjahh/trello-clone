@@ -21,8 +21,10 @@ function togglePopup() {
 const kanban = useKanbanStore();
 
 function editTask() {
-  kanban.updateTask(props.taskData.id, taskData.value);
-  togglePopup();
+  if (taskData.value.name && taskData.value.datetime) {
+    kanban.updateTask(props.taskData.id, taskData.value);
+    togglePopup();
+  }
 }
 </script>
 
