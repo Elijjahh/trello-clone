@@ -48,7 +48,7 @@ function addTask() {
           type="datetime-local"
         />
         <AppCheckbox v-model="taskData.urgent" label="Срочная задача" name="task-urgent" />
-        <button type="submit" class="kanban-board-add__submit">Создать</button>
+        <button type="submit">Создать</button>
       </form>
     </AppPopup>
   </div>

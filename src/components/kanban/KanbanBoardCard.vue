@@ -43,7 +43,7 @@ const getDatetime = computed(() => {
     <div v-if="props.data.urgent" class="kanban-board-сard__mark">Срочно</div>
     <div class="kanban-board-сard__title">{{ props.data.name }}</div>
     <div class="kanban-board-сard__footer">
-      <div class="kanban-board-сard__datetime">{{ getDatetime }}</div>
+      <div>{{ getDatetime }}</div>
       <div class="kanban-board-сard__options">
         <KanbanBoardEdit :taskData="props.data" />
         <KanbanBoardRemove :taskId="props.data.id" />
@@ -82,16 +82,10 @@ const getDatetime = computed(() => {
     align-items: center;
   }
 
-  &__datetime {
-  }
-
   &__options {
     display: flex;
     align-items: center;
     gap: 5px;
-  }
-
-  &__remove {
   }
 }
 </style>

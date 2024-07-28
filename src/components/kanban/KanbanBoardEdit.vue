@@ -30,7 +30,7 @@ function editTask() {
 
 <template>
   <div class="kanban-board-edit">
-    <button @click="togglePopup" class="kanban-board-edit__btn">edit</button>
+    <button @click="togglePopup">edit</button>
     <AppPopup v-model:visible="isPopupShown" title="Редактировать задачу">
       <form @submit.prevent="editTask" class="kanban-board-edit__form">
         <AppInput v-model="taskData.name" label="Название задачи" name="task-name" />
@@ -41,7 +41,7 @@ function editTask() {
           type="datetime-local"
         />
         <AppCheckbox v-model="taskData.urgent" label="Срочная задача" name="task-urgent" />
-        <button type="submit" class="kanban-board-edit__submit">Изменить</button>
+        <button type="submit">Изменить</button>
       </form>
     </AppPopup>
   </div>
@@ -49,9 +49,6 @@ function editTask() {
 
 <style scoped lang="scss">
 .kanban-board-edit {
-  &__btn {
-  }
-
   &__form {
     display: flex;
     flex-direction: column;
