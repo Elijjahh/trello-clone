@@ -46,30 +46,27 @@ const useKanbanStore = defineStore('kanban', () => {
   }
 
   function removeTask(taskId: number) {
-    for (const category in board.value) {
-      board.value[category].items = board.value[category].items.filter(
+    Object.keys(board.value).forEach((key) => {
+      board.value[key].items = board.value[key].items.filter(
         (item: TTaskData) => item.id !== taskId,
       );
-    }
+    });
   }
 
   function updateTask(
     taskId: number,
     taskData: { name: string; datetime: string; urgent: boolean },
   ) {
-    for (const category in board.value) {
-      const taskIndex = board.value[category].items.findIndex(
-        (item: TTaskData) => item.id === taskId,
-      );
+    Object.keys(board.value).forEach((key) => {
+      const taskIndex = board.value[key].items.findIndex((item: TTaskData) => item.id === taskId);
 
       if (taskIndex !== -1) {
-        board.value[category].items[taskIndex] = {
+        board.value[key].items[taskIndex] = {
           taskId,
           ...taskData,
         };
-        break;
       }
-    }
+    });
   }
 
   return { board, getBoard, addTask, removeTask, updateTask };

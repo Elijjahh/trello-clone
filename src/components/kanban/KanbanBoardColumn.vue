@@ -5,6 +5,7 @@ import KanbanBoardCard from '@/components/kanban/KanbanBoardCard.vue';
 import KanbanBoardAdd from '@/components/kanban/KanbanBoardAdd.vue';
 
 import type { TTaskData } from './types';
+
 const props = defineProps<{ items: TTaskData[]; title: string; category: string }>();
 </script>
 

@@ -34,7 +34,7 @@ function formatDate(dateString: string) {
 
 const getDatetime = computed(() => {
   const datetime = props.data.datetime.split('T');
-  return formatDate(datetime[0]) + ', ' + datetime[1];
+  return `${formatDate(datetime[0])}, ${datetime[1]}`;
 });
 </script>
 
